@@ -20,16 +20,19 @@ const Order = () => {
     const salad = menu.filter(item => item.category === 'salad');
     const pizza = menu.filter(item => item.category === 'pizza');
     const drinks = menu.filter(item => item.category === 'drinks');
+    console.log(tabIndex);
+    console.log(initialIndex);
+    console.log(category);
 
     return (
 
         <div >
-             <Helmet>
+            <Helmet>
                 <title>Bistro Boss | Order Food</title>
-               
+
             </Helmet>
 
-            <Cover img={OrderCover} title='Order Food'  ></Cover>
+            <Cover img={OrderCover} title='Our Shop'  ></Cover>
             <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className='text-center p-10'>
                 <TabList>
                     <Tab>Salad</Tab>
