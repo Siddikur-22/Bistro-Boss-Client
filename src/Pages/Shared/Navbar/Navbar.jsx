@@ -43,7 +43,9 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        user ? <> <button className='btn bg-red-500 border-none'> <Link onClick={handleLogOut} >Logout</Link></button></> : <>
+                        user ? <>
+                        <span>{user?.displayName}</span>
+                         <button className='btn bg-red-500 border-none'> <Link onClick={handleLogOut} >Logout</Link></button></> : <>
                             <button className='btn bg-green-500 border-none'>
 
                                 <Link to='/login'>Login</Link>
