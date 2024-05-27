@@ -1,22 +1,63 @@
-import { Children, createContext, useState } from "react";
-import { getAuth } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import auth from "../Firebase/Firebase.config";
+
+
+
 export const AuthContext = createContext(null);
 
-const auth = getAuth(app);
 
-const AuthProvider = ({ Children }) => {
+
+const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+  
+    console.log(user,'user not show');
 
-    const [loading,setLoading] = useState(true);
+  
+
+    const createUser = (email, password) => {
+        setLoading(true)
+        return createUserWithEmailAndPassword(auth,email,password);
+    }
+
+    const singInUser = (email,password)=>{
+        setLoading(true);
+        return signInWithEmailAndPassword(auth,email,password);
+    }
+
+    const logOut = ()=>{
+        setLoading(true)
+        setUser(null)
+        return signOut(auth)
+    }
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
+            console.log('Current user', currentUser);
+            setLoading(false);
+        });
+        return () => {
+            return unsubscribe();
+        }
+
+    }, [])
+
+
     const authInfo = {
         user,
-        loading
+        loading,
+        createUser,
+        singInUser,
+        logOut,
+       
     }
 
     return (
         <AuthContext.Provider value={authInfo}>
             {
-                Children
+                children
             }
         </AuthContext.Provider>
     );
