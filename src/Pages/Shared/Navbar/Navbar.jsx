@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { FaShoppingCart } from 'react-icons/fa';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -12,11 +13,18 @@ const Navbar = () => {
 
     }
 
-    const navOptions = <>
+    const navOptions = < >
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/Menu'>Our Menu</Link></li>
         <li><Link to='/order/salad'>Order Food</Link></li>
         <li><Link to='/secret'>Secret</Link></li>
+        <li><Link to='/'>
+
+            <button className="flex   bg-white text-black p-1 rounded-lg ">
+               <FaShoppingCart className='mr-2 mt-1'></FaShoppingCart>
+                <div className="badge badge-secondary">+0</div>
+            </button>
+        </Link></li>
 
 
 
@@ -35,7 +43,7 @@ const Navbar = () => {
                     </div>
                     <a className="btn btn-ghost text-xl text-white">Bistro Boss</a>
                 </div>
-                <div className="navbar-center hidden lg:flex">
+                <div className="navbar-center hidden lg:flex ">
                     <ul className="menu menu-horizontal px-1">
                         {navOptions}
 
@@ -44,9 +52,9 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         user ? <>
-                        <span>{user?.displayName}</span>
-                         <button className='btn bg-red-500 border-none'> <Link onClick={handleLogOut} >Logout</Link></button></> : <>
-                            <button className='btn bg-green-500 border-none'>
+                            {/* <span>{user?.displayName}</span> */}
+                            <button className='btn btn-outline text-white border-none'> <Link onClick={handleLogOut} >Logout</Link></button></> : <>
+                            <button className='btn btn-outline  border-none'>
 
                                 <Link to='/login'>Login</Link>
                             </button></>

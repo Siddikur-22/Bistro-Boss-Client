@@ -2,8 +2,8 @@ import {useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import useAuth from '../../Componentes/Hooks/useAuth';
 import Swal from 'sweetalert2';
+import useAuth from '../../Hooks/useAuth';
 
 const Login = () => {
     
@@ -14,6 +14,7 @@ const Login = () => {
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
+    console.log('state in the location',location.state);
 
     useEffect(() => {
         loadCaptchaEnginge(6);

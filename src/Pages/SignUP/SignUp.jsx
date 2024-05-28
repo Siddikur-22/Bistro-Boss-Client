@@ -1,8 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../Componentes/Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useAuth();
